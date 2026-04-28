@@ -1,20 +1,28 @@
 # CURSO DE GIT 
-## CLASE - 01 
-## ¿Qué es Git?
+## CLASE - 01 (GIT)
+### ¿Qué es Git?
 Es un Sistema de Control de Versiones, que nos permite llevar un control de los cambios realizados en nuestros proyectos, facilitando la colaboración entre varios desarrolladores.
 Permitiendo a los desarrolladores trabajar de manera conjunta en un proyecto, sin preocuparse por los conflictos de código o la pérdida de información. Git registra cada cambio realizado en el proyecto, lo que permite revertir a versiones anteriores si es necesario y facilita la colaboración entre equipos de desarrollo.
-## ¿Cómo nació Git?
+<center>
+<img src="images/logo-git.png" width="200">
+</center>   
+
+### ¿Cómo nació Git?
 Git nació en abril de 2005, creado por Linus Torvalds (creador de Linux), tras la necesidad de un sistema de control de versiones rápido y distribuido para el kernel de Linux.
 Surgió tras la polémica cancelación de la licencia gratuita de BitKeeper, el sistema que usaban anteriormente, lo que obligó a Torvalds a diseñar uno nuevo en poco más de una semana.
-## Cómo instalar Git?
-### En Windows:
+<center>
+<img src="images/descarga.jpg" width="300">
+</center>  
+
+### Cómo instalar Git?
+#### En Windows:
 1. Descarga el instalador desde la página oficial: https://git-scm.com/downloads
 2. Ejecuta el instalador y sigue las instrucciones. Puedes dejar las opciones por defecto, pero asegúrate de seleccionar "Git from the command line and also from 3rd-party software" para usar Git desde la terminal.
 3. Una vez instalado, abre la terminal (Git Bash) y verifica la instalación con el comando:
    ```
    git --version
    ```      
-### En macOS:
+#### En macOS:
 1. Abre la terminal y ejecuta el siguiente comando para instalar Git usando Homebrew:
    ```
    brew install git
@@ -23,7 +31,7 @@ Surgió tras la polémica cancelación de la licencia gratuita de BitKeeper, el 
    ```
     git --version
     ```
-### En Linux:
+#### En Linux:
 1. Abre la terminal y ejecuta el siguiente comando para instalar Git:   
     - En Debian/Ubuntu:
       ```
@@ -42,7 +50,7 @@ Surgió tras la polémica cancelación de la licencia gratuita de BitKeeper, el 
     ```
     git --version
     ```
-## Configuración inicial de Git
+### Configuración inicial de Git
 Después de instalar Git, es importante configurar tu nombre de usuario y correo electrónico, ya que esta información se asociará con tus commits. Para configurar Git, abre la terminal y ejecuta los siguientes comandos:
 ```
 git config --global user.name "Tu Nombre"
@@ -54,14 +62,15 @@ git config --global user.email "tu.email@ejemplo.com"
 - .gitignore: Un archivo que especifica qué archivos o directorios deben ser ignorados  por Git, como archivos temporales, dependencias, etc.
 - LICENSE: Un archivo que especifica la licencia bajo la cual se distribuye el proyecto, indicando los términos de uso y distribución.
 
-## CLASE - 02
-### Los estados de Git
+## CLASE - 02 
+### STATES Y COMMITS
+#### Los estados de Git
 En Git, los archivos pueden estar en diferentes estados que reflejan su situación en el proceso de desarrollo. Estos estados son fundamentales para entender cómo Git maneja los cambios y cómo se preparan los archivos para ser incluidos en los commits.
 #### Directorio de trabajo (Working Directory)
 Es el lugar donde se encuentran los archivos del proyecto en tu sistema de archivos. Aquí es donde realizas cambios en los archivos, como editarlos, agregar nuevos archivos o eliminar archivos existentes. El directorio de trabajo refleja el estado actual de tu proyecto.
-* Untracked: El archivo no está siendo rastreado por Git. No forma parte del historial de versiones y no se incluirá en los commits a menos que se agregue explícitamente.
-* Unmodified: El archivo está siendo rastreado por Git y no ha sufrido cambios desde el último commit. No se necesita hacer nada con este archivo, ya que no hay cambios que registrar.
-* Modified: El archivo ha sido modificado desde el último commit, pero aún no se ha agregado al área de preparación (staging area). Para incluir estos cambios en el próximo commit, es necesario agregar el archivo al área de preparación.
+* **Untracked:** El archivo no está siendo rastreado por Git. No forma parte del historial de versiones y no se incluirá en los commits a menos que se agregue explícitamente.
+* **Unmodified:** El archivo está siendo rastreado por Git y no ha sufrido cambios desde el último commit. No se necesita hacer nada con este archivo, ya que no hay cambios que registrar.
+* **Modified:** El archivo ha sido modificado desde el último commit, pero aún no se ha agregado al área de preparación (staging area). Para incluir estos cambios en el próximo commit, es necesario agregar el archivo al área de preparación.
 Si necesitas que un archivo vuelva a su estado original, puedes usar el comando `git restore -- <archivo>`, lo que descartará los cambios realizados en ese archivo y lo devolverá a la última versión confirmada en el repositorio local.
 ##### ¿Qué pasa si quiero que el archivo que creé no quiero que lo vea Git?
 En ese caso, puedes agregar el nombre del archivo o el patrón de archivos al archivo `.gitignore`. Esto le indicará a Git que ignore esos archivos y no los rastree ni los incluya en los commits.
@@ -79,38 +88,39 @@ Los comandos básicos para manejar estos estados son:
 - `git reset --soft HEAD~1`: Deshace el último commit, pero mantiene los cambios en el área de preparación. Esto te permite modificar el mensaje del commit o agregar más cambios antes de volver a confirmar.
 
 ### Buenas prácticas para el uso de Git
-1. Usa verbos imperativos en los mensajes de commit: Los mensajes de commit deben ser claros y concisos, describiendo la acción realizada. Por ejemplo, "Agrega función de autenticación" en lugar de "Función de autenticación agregada".
-* Add: Indica que se ha agregado una nueva función o característica al proyecto.
-* Fix: Indica que se ha corregido un error o bug en el código.
-* Update: Indica que se ha actualizado o mejorado una función existente.
-* Remove: Indica que se ha eliminado una función o código innecesario del proyecto.
+1. **Usa verbos imperativos en los mensajes de commit:** Los mensajes de commit deben ser claros y concisos, describiendo la acción realizada. Por ejemplo, "Agrega función de autenticación" en lugar de "Función de autenticación agregada".
+* <mark>Add</mark>: Indica que se ha agregado una nueva función o característica al proyecto.
+* <mark>Fix</mark>: Indica que se ha corregido un error o bug en el código.
+* <mark>Update</mark>: Indica que se ha actualizado o mejorado una función existente.
+* <mark>Remove</mark>: Indica que se ha eliminado una función o código innecesario del proyecto.
 
-2. No uses punto final en los mensajes de commit: Los mensajes de commit no deben terminar con un punto, ya que esto puede dificultar la lectura y el seguimiento del historial de versiones. 
+2. **No uses punto final en los mensajes de commit:** Los mensajes de commit no deben terminar con un punto, ya que esto puede dificultar la lectura y el seguimiento del historial de versiones. 
 
-3. Usar como maximo 50 caracteres para el mensaje de commit: Los mensajes de commit deben ser breves y al punto, idealmente no más de 50 caracteres. Esto facilita la lectura y comprensión del historial de versiones, especialmente cuando se visualiza en herramientas como `git log` o plataformas de alojamiento de código como GitHub.
+3. **Usar como maximo 50 caracteres para el mensaje de commit:** Los mensajes de commit deben ser breves y al punto, idealmente no más de 50 caracteres. Esto facilita la lectura y comprensión del historial de versiones, especialmente cuando se visualiza en herramientas como `git log` o plataformas de alojamiento de código como GitHub.
 
-4. Usar un prefixo para el mensaje de commit: Es recomendable usar un prefijo en el mensaje de commit para indicar el tipo de cambio realizado. Esto ayuda a categorizar los commits y facilita la comprensión del historial de versiones. Algunos prefijos comunes incluyen:
-* feat: Indica que se ha agregado una nueva función o característica al proyecto.
-* fix: Indica que se ha corregido un error o bug en el código.
-* docs: Indica que se han realizado cambios en la documentación del proyecto.
-* style: Indica que se han realizado cambios en el formato o estilo del código, sin afectar la funcionalidad.
-* refactor: Indica que se ha refactorizado el código, mejorando su estructura sin cambiar su comportamiento.
-* test: Indica que se han agregado o modificado pruebas para el proyecto.
-* chore: Indica que se han realizado tareas de mantenimiento o cambios menores que no afectan la funcionalidad del proyecto.
-* perf: Indica que se han realizado cambios para mejorar el rendimiento del proyecto.
-* ci: Indica que se han realizado cambios relacionados con la integración continua o el proceso de construcción del proyecto.
-* build: Indica que se han realizado cambios relacionados con el proceso de construcción o compilación del proyecto.
-5. Añade todo el contexto necesario en el mensaje de commit: Además de ser breve, el mensaje de commit debe proporcionar suficiente contexto para que otros desarrolladores (o tú mismo en el futuro) puedan entender claramente qué cambios se realizaron y por qué. Esto puede incluir detalles sobre la razón detrás del cambio, cómo se implementó o cualquier información relevante que ayude a comprender el propósito del commit.
+4. **Usar un prefixo para el mensaje de commit:** Es recomendable usar un prefijo en el mensaje de commit para indicar el tipo de cambio realizado. Esto ayuda a categorizar los commits y facilita la comprensión del historial de versiones. Algunos prefijos comunes incluyen:
+* <mark>feat</mark>: Indica que se ha agregado una nueva función o característica al proyecto.
+* <mark>fix</mark>: Indica que se ha corregido un error o bug en el código.
+* <mark>docs</mark>: Indica que se han realizado cambios en la documentación del proyecto.
+* <mark>style</mark>: Indica que se han realizado cambios en el formato o estilo del código, sin afectar la funcionalidad.
+* <mark>refactor</mark>: Indica que se ha refactorizado el código, mejorando su estructura sin cambiar su comportamiento.
+* <mark>test</mark>: Indica que se han agregado o modificado pruebas para el proyecto.
+* <mark>chore</mark>: Indica que se han realizado tareas de mantenimiento o cambios menores que no afectan la funcionalidad del proyecto.
+* <mark>perf</mark>: Indica que se han realizado cambios para mejorar el rendimiento del proyecto.
+* <mark>ci</mark>: Indica que se han realizado cambios relacionados con la integración continua o el proceso de construcción del proyecto.
+* <mark>build</mark>: Indica que se han realizado cambios relacionados con el proceso de construcción o compilación del proyecto.
+5. **Añade todo el contexto necesario en el mensaje de commit:** Además de ser breve, el mensaje de commit debe proporcionar suficiente contexto para que otros desarrolladores (o tú mismo en el futuro) puedan entender claramente qué cambios se realizaron y por qué. Esto puede incluir detalles sobre la razón detrás del cambio, cómo se implementó o cualquier información relevante que ayude a comprender el propósito del commit.
 
 > Razón por la cual no asistí a la clase 21/03/2026.
 >  ![](images/Foto_de_WhatsApp.png )
 > - Estaba en el parcial de la materia de Taller de Sistemas Operativos, que se llevó a cabo el mismo día.
 > Hora de inicio de Parcial 18:45 pero nos dió tiempo a resolver hasta las 20:30 y de ahí a casa me demoro aproximadamente una hora y media. por lo cual no pude asistir lamentablemente.
 
-## CLASE - 03
-### ¿Qué es GitHub?
+## CLASE - 03 
+### GIT HUB Y SSH
+#### ¿Qué es GitHub?
 GitHub es una plataforma de alojamiento de código fuente y control de versiones basada en Git. Permite a los desarrolladores colaborar en proyectos de software, compartir código, gestionar versiones y realizar un seguimiento de los cambios realizados en el código fuente. GitHub ofrece una interfaz web intuitiva para gestionar repositorios, realizar pull requests, revisar código y colaborar con otros desarrolladores en proyectos de software.
-### Git vs GitHub
+#### Git vs GitHub
 | Git | GitHub |
 | --- | --- | 
 | Es un sistema de control de versiones. | Es una plataforma de alojamiento de código basada en Git. |
@@ -123,20 +133,21 @@ GitHub es una plataforma de alojamiento de código fuente y control de versiones
 | Es un protocolo de comunicación seguro que utiliza claves SSH para autenticar a los usuarios. | Es un protocolo de comunicación seguro que utiliza certificados SSL para cifrar la conexión. |
 | Requiere configuración de claves SSH en el sistema. | No requiere configuración adicional, solo autenticación con usuario y contraseña. |
 | Permite una autenticación más segura y sin necesidad de ingresar credenciales cada vez. | Requiere ingresar credenciales cada vez que se realiza una operación que requiere autenticación. |
+
 Por lo que se recomienda usar SSH para una experiencia más fluida y segura al interactuar con repositorios en GitHub, especialmente si realizas operaciones frecuentes que requieren autenticación.
 #### Configurar GitHub con SSH
-1. Generar una clave SSH: Abre la terminal y ejecuta el siguiente comando para generar una nueva clave SSH:
+1. **Generar una clave SSH:** Abre la terminal y ejecuta el siguiente comando para generar una nueva clave SSH:
    ```
    ssh-keygen -t ed25519 -C " "tu correo electrónico"
    ```
     Sigue las instrucciones para guardar la clave en el directorio predeterminado y establece una contraseña si lo deseas.
-2. Agregar la clave SSH a tu cuenta de GitHub: Copia el contenido de tu clave pública SSH (generalmente ubicada en `~/.ssh/id_ed25519.pub`) y agrégala a tu cuenta de GitHub en la sección "SSH and GPG keys" de tu configuración de perfil.
-3. Configurar Git para usar SSH: Asegúrate de que Git esté configurado para usar SSH en lugar de HTTPS. Puedes hacerlo ejecutando el siguiente comando:
+2. **Agregar la clave SSH a tu cuenta de GitHub:** Copia el contenido de tu clave pública SSH (generalmente ubicada en `~/.ssh/id_ed25519.pub`) y agrégala a tu cuenta de GitHub en la sección "SSH and GPG keys" de tu configuración de perfil.
+3. **Configurar Git para usar SSH:** Asegúrate de que Git esté configurado para usar SSH en lugar de HTTPS. Puedes hacerlo ejecutando el siguiente comando:
    ```
    git config --global url."https://github.com/".insteadOf "https://github.com/"
    ```
     Esto redirigirá automáticamente las solicitudes de GitHub a usar SSH en lugar de HTTPS. 
-4. Probar la conexión SSH: Para verificar que la configuración SSH esté funcionando correctamente, ejecuta el siguiente comando:
+4. **Probar la conexión SSH:** Para verificar que la configuración SSH esté funcionando correctamente, ejecuta el siguiente comando:
    ```  
     ssh -T git@github.com
     ```
@@ -182,7 +193,7 @@ Para verificar que la URL del repositorio remoto se ha actualizado correctamente
    git pull origin <nombre de la rama>
    ```
 
-## CLASE - 04
+## CLASE - 04 
 ### Remote, SSH multiple y checkout
 
 #### GIT REMOTE
@@ -215,10 +226,10 @@ Para configurar SSH multiple, puedes seguir estos pasos:
    ```
     Asegúrate de reemplazar `id_ed25519_github` y `id_ed25519_gitlab` con los nombres reales de tus claves SSH. Con esta configuración, cuando te conectes a GitHub o GitLab, se utilizará la clave SSH correspondiente para autenticarte automáticamente sin necesidad de ingresar tus credenciales cada vez. 
 
-* Host especifica el nombre del host al que deseas conectarte (por ejemplo, github.com).
-* HostName especifica la dirección real del host (en este caso, github.com).  
-* User especifica el nombre de usuario que se utilizará para la autenticación (en este caso, git).
-* IdentityFile especifica la ruta a la clave SSH que se utilizará para autenticarte con ese host específico.
+* **Host** especifica el nombre del host al que deseas conectarte (por ejemplo, github.com).
+* **HostName** especifica la dirección real del host (en este caso, github.com).  
+* **User** especifica el nombre de usuario que se utilizará para la autenticación (en este caso, git).
+* **IdentityFile** especifica la ruta a la clave SSH que se utilizará para autenticarte con ese host específico.
 4. Prueba la conexión SSH para cada host para asegurarte de que la configuración sea correcta. Puedes hacerlo ejecutando el siguiente comando para cada host:
    ```
    ssh -T git@github-mi-cuenta
@@ -293,8 +304,8 @@ El comando `git checkout` se utiliza para cambiar entre ramas o para restaurar a
       git checkout -- nombre-del-directorio/
     ```  
 #### Buenas prácticas del checkout
-1. No trabajes mucho tiempo en 'Dectached HEAD': Evita realizar cambios significativos mientras estás en un estado de 'Detached HEAD', ya que estos cambios pueden perderse fácilmente si no se gestionan adecuadamente. Si necesitas realizar cambios, considera crear una nueva rama para preservar tu trabajo.
-2. Limpia tu directorio de trabajo antes de hacer checkout: Antes de cambiar a otra rama, asegúrate de que tu directorio de trabajo esté limpio y sin cambios no confirmados. Esto evitará conflictos y problemas al cambiar entre ramas.
-3. Usa checkout para cambiar de rama, no para crear ramas: El comando `git checkout` se utiliza principalmente para cambiar entre ramas existentes. Para crear una nueva rama, es mejor usar el comando `git branch` o `git checkout -b` para evitar confusiones y mantener un flujo de trabajo claro.
-4. No hagas checkout a ramas remotas directamente: Evita hacer checkout directamente a ramas remotas, ya que esto puede llevar a un estado de 'Detached HEAD'. En su lugar, crea una nueva rama local basada en la rama remota para trabajar de manera más segura y organizada.
-5. Usa checkout para restaurar archivos con precaución: El comando `git checkout` puede ser útil para restaurar archivos a su estado anterior, pero ten cuidado al usarlo, ya que puede resultar en la pérdida de cambios no confirmados. Asegúrate de revisar los cambios antes de usar `git checkout` para restaurar archivos y considera hacer un commit o stash de tus cambios antes de restaurar archivos si no quieres perder tu trabajo. 
+1. **No trabajes mucho tiempo en 'Dectached HEAD':** Evita realizar cambios significativos mientras estás en un estado de 'Detached HEAD', ya que estos cambios pueden perderse fácilmente si no se gestionan adecuadamente. Si necesitas realizar cambios, considera crear una nueva rama para preservar tu trabajo.
+2. **Limpia tu directorio de trabajo antes de hacer checkout:** Antes de cambiar a otra rama, asegúrate de que tu directorio de trabajo esté limpio y sin cambios no confirmados. Esto evitará conflictos y problemas al cambiar entre ramas.
+3. **Usa checkout para cambiar de rama, no para crear ramas:** El comando `git checkout` se utiliza principalmente para cambiar entre ramas existentes. Para crear una nueva rama, es mejor usar el comando `git branch` o `git checkout -b` para evitar confusiones y mantener un flujo de trabajo claro.
+4. **No hagas checkout a ramas remotas directamente:** Evita hacer checkout directamente a ramas remotas, ya que esto puede llevar a un estado de 'Detached HEAD'. En su lugar, crea una nueva rama local basada en la rama remota para trabajar de manera más segura y organizada.
+5. **Usa checkout para restaurar archivos con precaución:** El comando `git checkout` puede ser útil para restaurar archivos a su estado anterior, pero ten cuidado al usarlo, ya que puede resultar en la pérdida de cambios no confirmados. Asegúrate de revisar los cambios antes de usar `git checkout` para restaurar archivos y considera hacer un commit o stash de tus cambios antes de restaurar archivos si no quieres perder tu trabajo. 
