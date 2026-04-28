@@ -309,3 +309,42 @@ El comando `git checkout` se utiliza para cambiar entre ramas o para restaurar a
 3. **Usa checkout para cambiar de rama, no para crear ramas:** El comando `git checkout` se utiliza principalmente para cambiar entre ramas existentes. Para crear una nueva rama, es mejor usar el comando `git branch` o `git checkout -b` para evitar confusiones y mantener un flujo de trabajo claro.
 4. **No hagas checkout a ramas remotas directamente:** Evita hacer checkout directamente a ramas remotas, ya que esto puede llevar a un estado de 'Detached HEAD'. En su lugar, crea una nueva rama local basada en la rama remota para trabajar de manera más segura y organizada.
 5. **Usa checkout para restaurar archivos con precaución:** El comando `git checkout` puede ser útil para restaurar archivos a su estado anterior, pero ten cuidado al usarlo, ya que puede resultar en la pérdida de cambios no confirmados. Asegúrate de revisar los cambios antes de usar `git checkout` para restaurar archivos y considera hacer un commit o stash de tus cambios antes de restaurar archivos si no quieres perder tu trabajo. 
+
+## CLASE - 05
+### RAMAS Y GITFLOW BÁSICO
+#### Ramas en Git
+Las ramas en Git son una característica fundamental que permite a los desarrolladores trabajar en diferentes líneas de desarrollo de manera simultánea. Cada rama representa una versión independiente del proyecto, lo que permite a los desarrolladores realizar cambios sin afectar la rama principal (generalmente llamada "main" o "master"). Las ramas facilitan la colaboración, el desarrollo de nuevas características, la corrección de errores y la experimentación sin comprometer la estabilidad del proyecto principal.
+
+#### Git Branch
+Es el comando utilizado para crear, listar y gestionar ramas en Git. Algunas de las operaciones comunes con `git branch` incluyen:
+- `git branch`: Lista todas las ramas en el repositorio local.
+- `git branch nombre-de-la-rama`: Crea una nueva rama con el nombre especificado.
+- `git branch -d nombre-de-la-rama`: Elimina la rama especificada (asegúrate de que la rama no tenga cambios no fusionados antes de eliminarla).
+- `git branch -m nombre-viejo nombre-nuevo`: Renombra una rama existente.
+
+#### Git checkout
+Es el comando utilizado para cambiar entre ramas en Git. Algunas de las operaciones comunes con `git checkout` incluyen:
+- `git checkout nombre-de-la-rama`: Cambia a la rama especificada.
+
+No debemos tener nada previamente modificado en el directorio de trabajo, ya que esto puede causar conflictos al cambiar de rama. Si tienes cambios no confirmados, es recomendable hacer un commit o stash de esos cambios antes de usar `git checkout` para cambiar a otra rama.
+- `git checkout -b nombre-de-la-nueva-rama`: Crea una nueva rama y cambia a ella al mismo tiempo.
+
+#### Git checkout vs Git switch
+| Git checkout | Git switch |
+| --- | --- |
+| Se utiliza para cambiar entre ramas y también para restaurar archivos. | Se utiliza exclusivamente para cambiar entre ramas. |
+| Puede ser confuso para los nuevos usuarios debido a su funcionalidad dual. | Proporciona una sintaxis más clara y específica para cambiar de rama. |
+
+#### Gitflow básico
+Gitflow es una metodología de desarrollo de software que se basa en el uso de ramas para organizar el flujo de trabajo en un proyecto. Gitflow define un conjunto de ramas específicas y reglas para su uso, lo que ayuda a mantener un proceso de desarrollo estructurado y eficiente. Las ramas principales en Gitflow son:
+1. **Main (o Master):** Es la rama principal que representa la versión estable del proyecto. Solo se deben fusionar cambios a esta rama después de que hayan sido probados y estén listos para producción.
+2. **Develop:** Es la rama de desarrollo donde se integran todas las nuevas características y correcciones de errores. Esta rama se utiliza para el desarrollo activo y se fusiona regularmente con la rama Main para mantenerla actualizada.
+3. **Feature branches:** Son ramas temporales que se crean para desarrollar nuevas características o funcionalidades específicas. Estas ramas se crean a partir de la rama Develop y se fusionan de nuevo a Develop una vez que la característica está completa y probada.
+4. **Release branches:** Son ramas temporales que se crean para preparar una nueva versión del proyecto. Estas ramas se crean a partir de Develop y se utilizan para realizar pruebas finales, correcciones de errores y ajustes antes de fusionar a Main para su lanzamiento.
+5. **Hotfix branches:** Son ramas temporales que se crean para corregir errores críticos en la rama Main. Estas ramas se crean a partir de Main y se utilizan para realizar correcciones rápidas sin afectar el desarrollo activo en la rama Develop. Una vez que se corrige el error, la rama Hotfix se fusiona tanto a Main como a Develop para mantener ambas ramas actualizadas.
+#### Buenas prácticas para el uso de ramas y Gitflow
+1. **Usa nombres descriptivos para las ramas:** Al crear ramas, es importante usar nombres descriptivos que reflejen claramente el propósito de la rama. Esto facilita la comprensión del flujo de trabajo y ayuda a otros desarrolladores a identificar rápidamente el propósito de cada rama. Por ejemplo, en lugar de usar nombres genéricos como "feature1" o "bugfix2", es mejor usar nombres como "feature/login-page" o "bugfix/fix-header-alignment" para indicar claramente qué característica o corrección de error se está desarrollando en esa rama.
+2. **Mantén las ramas actualizadas:** Es importante mantener las ramas actualizadas con los cambios realizados en la rama Develop o Main para evitar conflictos y asegurarte de que estás trabajando con la versión más reciente del código. Esto se puede hacer regularmente fusionando los cambios de Develop o Main a tu rama de trabajo para mantenerla sincronizada con el resto del proyecto.
+3. **Realiza commits frecuentes y significativos:** Al trabajar en una rama, es recomendable realizar commits frecuentes y significativos que describan claramente los cambios realizados. Esto facilita el seguimiento del historial de cambios y ayuda a otros desarrolladores a entender el propósito de cada commit. Evita hacer commits con mensajes genéricos como "cambios" o "arreglos", y en su lugar, proporciona mensajes descriptivos que expliquen qué cambios se realizaron y por qué.
+4. **Usa pull requests para revisar y fusionar cambios:** En lugar de fusionar cambios directamente a la rama Develop o Main, es recomendable usar pull requests para revisar y discutir los cambios antes de fusionarlos. Esto permite a otros desarrolladores revisar el código, proporcionar comentarios y asegurarse de que los cambios cumplen con los estándares de calidad antes de ser integrados en la rama principal del proyecto.
+5. **Elimina ramas después de fusionar:** Una vez que una rama ha sido fusionada a Develop o Main, es recomendable eliminarla para mantener el repositorio limpio y organizado. Esto ayuda a evitar confusiones y reduce el desorden en el historial de ramas, facilitando la navegación y el mantenimiento del proyecto a largo plazo.
