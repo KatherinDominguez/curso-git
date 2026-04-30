@@ -348,3 +348,51 @@ Gitflow es una metodología de desarrollo de software que se basa en el uso de r
 3. **Realiza commits frecuentes y significativos:** Al trabajar en una rama, es recomendable realizar commits frecuentes y significativos que describan claramente los cambios realizados. Esto facilita el seguimiento del historial de cambios y ayuda a otros desarrolladores a entender el propósito de cada commit. Evita hacer commits con mensajes genéricos como "cambios" o "arreglos", y en su lugar, proporciona mensajes descriptivos que expliquen qué cambios se realizaron y por qué.
 4. **Usa pull requests para revisar y fusionar cambios:** En lugar de fusionar cambios directamente a la rama Develop o Main, es recomendable usar pull requests para revisar y discutir los cambios antes de fusionarlos. Esto permite a otros desarrolladores revisar el código, proporcionar comentarios y asegurarse de que los cambios cumplen con los estándares de calidad antes de ser integrados en la rama principal del proyecto.
 5. **Elimina ramas después de fusionar:** Una vez que una rama ha sido fusionada a Develop o Main, es recomendable eliminarla para mantener el repositorio limpio y organizado. Esto ayuda a evitar confusiones y reduce el desorden en el historial de ramas, facilitando la navegación y el mantenimiento del proyecto a largo plazo.
+
+
+## CLASE - 06
+### Qué es git merge?
+El comando `git merge` se utiliza para fusionar cambios de una rama a otra en Git. Permite combinar el historial de dos ramas diferentes, integrando los cambios realizados en una rama (la rama de origen) con otra rama (la rama de destino). El proceso de fusión puede resultar en diferentes tipos de merge, dependiendo de la relación entre las ramas y los cambios realizados.
+#### Qué es git fetch?
+El comando `git fetch` se utiliza para descargar los cambios realizados en un repositorio remoto a tu repositorio local sin fusionarlos automáticamente. Este comando actualiza tu repositorio local con los cambios realizados en el repositorio remoto, pero no modifica tu rama actual ni fusiona los cambios descargados. Después de ejecutar `git fetch`, puedes revisar los cambios descargados y decidir cuándo y cómo fusionarlos con tu rama actual utilizando el comando `git merge` o `git rebase`.
+#### Qué es git pull?
+El comando `git pull` es una combinación de `git fetch` y `git merge`. Se utiliza para descargar los cambios realizados en un repositorio remoto y fusionarlos automáticamente con tu rama actual. Al ejecutar `git pull`, Git primero realiza un `git fetch` para obtener los cambios del repositorio remoto y luego ejecuta un `git merge` para integrar esos cambios en tu rama actual. Esto permite mantener tu rama actualizada con los cambios realizados por otros colaboradores en el repositorio remoto de manera rápida y sencilla. Sin embargo, ten cuidado al usar `git pull`, ya que puede resultar en conflictos de fusión si hay cambios incompatibles entre tu rama local y la rama remota. Es recomendable revisar los cambios descargados antes de fusionarlos para evitar problemas.
+
+`ggit pull origin rama` es un comando que se utiliza para actualizar tu rama local con los cambios realizados en la rama remota correspondiente en el repositorio remoto. Este comando realiza dos acciones principales:
+1. **Descargar los cambios del repositorio remoto:** El comando `git pull` primero realiza un `git fetch` para descargar los cambios realizados en la rama remota especificada (en este caso, "rama") desde el repositorio remoto (en este caso, "origin"). Esto actualiza tu repositorio local con los cambios realizados por otros colaboradores en esa rama remota.
+2. **Fusionar los cambios con tu rama local:** Después de descargar los cambios, `git pull` ejecuta automáticamente un `git merge` para fusionar los cambios descargados con tu rama local actual. Esto permite que tu rama local esté actualizada con los cambios realizados en la rama remota, lo que facilita la colaboración y el trabajo en equipo en proyectos de software. Sin embargo, ten cuidado al usar `git pull`, ya que puede resultar en conflictos de fusión si hay cambios incompatibles entre tu rama local y la rama remota. Es recomendable revisar los cambios descargados antes de fusionarlos para evitar problemas.
+
+#### Qué es git push?
+El comando `git push` se utiliza para enviar tus cambios locales a un repositorio remoto. Este comando actualiza el repositorio remoto con los cambios que has realizado en tu rama local, permitiendo que otros colaboradores vean y accedan a tus cambios. Al ejecutar `git push`, Git envía tus commits locales al repositorio remoto, actualizando la rama correspondiente en el repositorio remoto con tus cambios. Es importante tener en cuenta que para usar `git push`, debes tener permisos de escritura en el repositorio remoto y estar autenticado correctamente. Además, es recomendable revisar tus cambios antes de hacer un push para asegurarte de que estás enviando los cambios correctos al repositorio remoto.
+`git push origin rama` es un comando que se utiliza para enviar tus cambios locales a la rama remota correspondiente en el repositorio remoto. Este comando realiza dos acciones principales:
+1. **Enviar tus cambios al repositorio remoto:** El comando `git push` envía tus commits locales a la rama remota especificada (en este caso, "rama") en el repositorio remoto (en este caso, "origin"). Esto actualiza la rama remota con los cambios que has realizado en tu rama local, permitiendo que otros colaboradores vean y accedan a tus cambios.
+2. **Actualizar la rama remota:** Al ejecutar `git push origin rama`, Git actual la la rama remota correspondiente en el repositorio remoto con tus cambios locales. Esto facilita la colaboración y el trabajo en equipo en proyectos de software, ya que otros colaboradores pueden ver y acceder a tus cambios a través del repositorio remoto. Es importante tener en cuenta que para usar `git push`, debes tener permisos de escritura en el repositorio remoto y estar autenticado correctamente. Además, es recomendable revisar tus cambios antes de hacer un push para asegurarte de que estás enviando los cambios correctos al repositorio remoto.
+
+#### Fluejo de trabajo sin pull request
+1. Crea una nueva rama para tu trabajo:
+   ```
+   git checkout -b nombre-de-la-rama
+   ```
+2. Realiza tus cambios y haz commits regularmente:
+   ```
+   git add .
+   git commit -m "Descripción de los cambios realizados"
+   ```
+3. Sincroniza tu rama con la rama principal (main) para asegurarte de que estás trabajando con la versión más reciente del código:
+   ```   
+   git pull origin main
+   ```
+4. Resuelve cualquier conflicto de fusión si es necesario.
+5. Una vez que tus cambios estén listos, haz un push de tu rama al repositorio remoto:
+   ```
+   git push origin nombre-de-la-rama
+   ```   
+6. Fusiona tu rama con la rama principal (main) utilizando el comando `git merge`:
+   ```
+   git checkout main
+   git merge nombre-de-la-rama
+   ```
+7. Elimina tu rama de trabajo si ya no la necesitas:
+   ```
+   git branch -d nombre-de-la-rama
+   ```
