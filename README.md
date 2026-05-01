@@ -351,24 +351,24 @@ Gitflow es una metodología de desarrollo de software que se basa en el uso de r
 
 
 ## CLASE - 06
-### Qué es git merge?
+### ¿Qué es git merge?
 El comando `git merge` se utiliza para fusionar cambios de una rama a otra en Git. Permite combinar el historial de dos ramas diferentes, integrando los cambios realizados en una rama (la rama de origen) con otra rama (la rama de destino). El proceso de fusión puede resultar en diferentes tipos de merge, dependiendo de la relación entre las ramas y los cambios realizados.
 #### Qué es git fetch?
 El comando `git fetch` se utiliza para descargar los cambios realizados en un repositorio remoto a tu repositorio local sin fusionarlos automáticamente. Este comando actualiza tu repositorio local con los cambios realizados en el repositorio remoto, pero no modifica tu rama actual ni fusiona los cambios descargados. Después de ejecutar `git fetch`, puedes revisar los cambios descargados y decidir cuándo y cómo fusionarlos con tu rama actual utilizando el comando `git merge` o `git rebase`.
-#### Qué es git pull?
+#### ¿Qué es git pull?
 El comando `git pull` es una combinación de `git fetch` y `git merge`. Se utiliza para descargar los cambios realizados en un repositorio remoto y fusionarlos automáticamente con tu rama actual. Al ejecutar `git pull`, Git primero realiza un `git fetch` para obtener los cambios del repositorio remoto y luego ejecuta un `git merge` para integrar esos cambios en tu rama actual. Esto permite mantener tu rama actualizada con los cambios realizados por otros colaboradores en el repositorio remoto de manera rápida y sencilla. Sin embargo, ten cuidado al usar `git pull`, ya que puede resultar en conflictos de fusión si hay cambios incompatibles entre tu rama local y la rama remota. Es recomendable revisar los cambios descargados antes de fusionarlos para evitar problemas.
 
 `ggit pull origin rama` es un comando que se utiliza para actualizar tu rama local con los cambios realizados en la rama remota correspondiente en el repositorio remoto. Este comando realiza dos acciones principales:
 1. **Descargar los cambios del repositorio remoto:** El comando `git pull` primero realiza un `git fetch` para descargar los cambios realizados en la rama remota especificada (en este caso, "rama") desde el repositorio remoto (en este caso, "origin"). Esto actualiza tu repositorio local con los cambios realizados por otros colaboradores en esa rama remota.
 2. **Fusionar los cambios con tu rama local:** Después de descargar los cambios, `git pull` ejecuta automáticamente un `git merge` para fusionar los cambios descargados con tu rama local actual. Esto permite que tu rama local esté actualizada con los cambios realizados en la rama remota, lo que facilita la colaboración y el trabajo en equipo en proyectos de software. Sin embargo, ten cuidado al usar `git pull`, ya que puede resultar en conflictos de fusión si hay cambios incompatibles entre tu rama local y la rama remota. Es recomendable revisar los cambios descargados antes de fusionarlos para evitar problemas.
 
-#### Qué es git push?
+#### ¿Qué es git push?
 El comando `git push` se utiliza para enviar tus cambios locales a un repositorio remoto. Este comando actualiza el repositorio remoto con los cambios que has realizado en tu rama local, permitiendo que otros colaboradores vean y accedan a tus cambios. Al ejecutar `git push`, Git envía tus commits locales al repositorio remoto, actualizando la rama correspondiente en el repositorio remoto con tus cambios. Es importante tener en cuenta que para usar `git push`, debes tener permisos de escritura en el repositorio remoto y estar autenticado correctamente. Además, es recomendable revisar tus cambios antes de hacer un push para asegurarte de que estás enviando los cambios correctos al repositorio remoto.
 `git push origin rama` es un comando que se utiliza para enviar tus cambios locales a la rama remota correspondiente en el repositorio remoto. Este comando realiza dos acciones principales:
 1. **Enviar tus cambios al repositorio remoto:** El comando `git push` envía tus commits locales a la rama remota especificada (en este caso, "rama") en el repositorio remoto (en este caso, "origin"). Esto actualiza la rama remota con los cambios que has realizado en tu rama local, permitiendo que otros colaboradores vean y accedan a tus cambios.
 2. **Actualizar la rama remota:** Al ejecutar `git push origin rama`, Git actual la la rama remota correspondiente en el repositorio remoto con tus cambios locales. Esto facilita la colaboración y el trabajo en equipo en proyectos de software, ya que otros colaboradores pueden ver y acceder a tus cambios a través del repositorio remoto. Es importante tener en cuenta que para usar `git push`, debes tener permisos de escritura en el repositorio remoto y estar autenticado correctamente. Además, es recomendable revisar tus cambios antes de hacer un push para asegurarte de que estás enviando los cambios correctos al repositorio remoto.
 
-#### Fluejo de trabajo sin pull request
+#### Flujo de trabajo sin pull request
 1. Crea una nueva rama para tu trabajo:
    ```
    git checkout -b nombre-de-la-rama
@@ -396,3 +396,88 @@ El comando `git push` se utiliza para enviar tus cambios locales a un repositori
    ```
    git branch -d nombre-de-la-rama
    ```
+## CLASE - 07
+### ¿Qué es un Pull Request?
+Un Pull Request (PR) es una solicitud para fusionar cambios realizados en una rama de un repositorio a otra rama, generalmente la rama principal (main o master). Es una herramienta fundamental en el flujo de trabajo colaborativo de Git, ya que permite a los desarrolladores revisar y discutir los cambios antes de integrarlos en la rama principal del proyecto. Un Pull Request facilita la colaboración entre desarrolladores, ya que permite a otros miembros del equipo revisar el código, proporcionar comentarios y sugerencias, y asegurarse de que los cambios cumplen con los estándares de calidad antes de ser fusionados en la rama principal del proyecto.
+#### Flujo de trabajo con Pull Request
+1. Crea una nueva rama para tu trabajo:
+   ```
+   git checkout -b nombre-de-la-rama
+   ```
+2. Realiza tus cambios y haz commits regularmente:
+   ```
+   git add .
+   git commit -m "Descripción de los cambios realizados"
+   ```
+3. Sincroniza tu rama con la rama principal (main) para asegurarte de que estás trabajando con la versión más reciente del código:
+   ```   
+   git pull origin main
+   ```
+4. Resuelve cualquier conflicto de fusión si es necesario.
+5. Una vez que tus cambios estén listos, haz un push de tu rama al repositorio remoto:
+   ```
+   git push origin nombre-de-la-rama
+   ```
+6. Crea un Pull Request en la plataforma de alojamiento de código (como GitHub) para solicitar la revisión y fusión de tus cambios en la rama principal (main).
+7. Otros miembros del equipo revisarán tu Pull Request, proporcionarán comentarios y sugerencias, y discutirán cualquier cambio necesario antes de aprobar la fusión.
+8. Una vez que tu Pull Request sea aprobado, se fusionará en la rama principal (main) del proyecto.
+9. Elimina tu rama de trabajo si ya no la necesitas:
+   ```
+   git branch -d nombre-de-la-rama
+   ```
+
+#### ¿Por qué usar Pull Requests?
+1. **Revisión de código:** Los Pull Requests permiten a otros desarrolladores revisar tu código antes de fusionarlo en la rama principal del proyecto. Esto ayuda a identificar errores, mejorar la calidad del código y garantizar que los cambios cumplan con los estándares de calidad del proyecto.
+2. **Discusión y colaboración:** Los Pull Requests facilitan la discusión y colaboración entre desarrolladores. Otros miembros del equipo pueden proporcionar comentarios, sugerencias y discutir cualquier cambio necesario antes de aprobar la fusión. Esto fomenta un ambiente de trabajo colaborativo y mejora la comunicación dentro del equipo.
+3. **Control de versiones:** Los Pull Requests permiten mantener un historial claro de los cambios realizados en el proyecto. Cada Pull Request representa un conjunto de cambios específicos, lo que facilita el seguimiento de las modificaciones realizadas en el código a lo largo del tiempo. Esto es especialmente útil para proyectos grandes con múltiples colaboradores, ya que ayuda a mantener un registro organizado de los cambios realizados en el proyecto.
+4. **Integración continua:** Los Pull Requests se integran fácilmente con herramientas de integración continua (CI) y pruebas automatizadas. Esto permite ejecutar pruebas y validaciones automáticamente cada vez que se crea o actualiza un Pull Request, lo que ayuda a garantizar que los cambios propuestos no introduzcan errores o problemas en el proyecto antes de ser fusionados en la rama principal.
+
+#### ¿Cómo proteger mi repositorio y limitar la colaboración a través de Pull Requests?
+1. **Configura ramas protegidas:** En plataformas como GitHub, puedes configurar ramas protegidas para evitar que los cambios se fusionen directamente a la rama principal (main) sin pasar por un proceso de revisión. Esto garantiza que todos los cambios sean revisados y aprobados antes de ser integrados en la rama principal del proyecto.
+2. **Requiere revisiones de código:** Puedes configurar tu repositorio para requerir revisiones de código antes de permitir la fusión de un Pull Request. Esto asegura que al menos un miembro del equipo revise y apruebe los cambios antes de que se integren en la rama principal del proyecto.
+3. **Limita quién puede fusionar Pull Requests:** Puedes configurar tu repositorio para limitar quién puede fusionar Pull Requests a la rama principal (main). Esto garantiza que solo los miembros autorizados del equipo puedan aprobar y fusionar cambios en la rama principal del proyecto, lo que ayuda a mantener un control más estricto sobre los cambios que se integran en el proyecto.
+4. **Usa etiquetas y revisores específicos:** Puedes usar etiquetas para categorizar tus Pull Requests y asignar revisores específicos para cada Pull Request. Esto ayuda a organizar y gestionar los Pull Requests de manera más eficiente, asegurando que los cambios sean revisados por las personas adecuadas dentro del equipo.
+
+#### ¿Cómo revisar un Pull Request?
+1. **Lee la descripción del Pull Request:** Comienza por leer la descripción proporcionada por el autor del Pull Request para entender el propósito de los cambios propuestos. La descripción debe proporcionar contexto sobre qué cambios se realizaron, por qué se realizaron y cualquier información relevante que pueda ayudar a comprender mejor el Pull Request.
+2. **Revisa los cambios de código:** Examina los cambios de código propuestos en el Pull Request. Presta atención a la calidad del código, la legibilidad, la adherencia a los estándares de codificación del proyecto y cualquier posible error o problema que pueda surgir de los cambios propuestos.
+3. **Proporciona comentarios constructivos:** Si encuentras algún problema o tienes sugerencias para mejorar el Pull Request, proporciona comentarios constructivos al autor del Pull Request. Sé claro y específico en tus comentarios, indicando qué cambios sugieres y por qué crees que esos cambios mejorarían el Pull Request. Evita comentarios negativos o críticos sin ofrecer soluciones o sugerencias para mejorar el código.
+4. **Aprueba o solicita cambios:** Si estás satisfecho con los cambios propuestos en el Pull Request, puedes aprobarlo para indicar que estás de acuerdo con los cambios y que el Pull Request está listo para ser fusionado. Si crees que se necesitan cambios adicionales antes de aprobar el Pull Request, puedes solicitar cambios al autor del Pull Request, indicando claramente qué cambios necesitas que se realicen antes de aprobarlo. Esto ayuda a garantizar que el Pull Request cumpla con los estándares de calidad del proyecto antes de ser fusionado en la rama principal.
+
+#### ¿Cómo fusionar un Pull Request?
+1. **Revisa el Pull Request:** Antes de fusionar un Pull Request, asegúrate de revisar cuidadosamente los cambios propuestos, los comentarios de los revisores y cualquier discusión relacionada con el Pull Request. Esto te ayudará a entender completamente el propósito de los cambios y a identificar cualquier posible problema o conflicto que pueda surgir al fusionar el Pull Request.
+2. **Resuelve cualquier conflicto de fusión:** Si hay conflictos de fusión entre el Pull Request y la rama principal (main), es importante resolver esos conflictos antes de fusionar el Pull Request. Esto puede implicar revisar los cambios en conflicto, decidir qué cambios conservar y realizar las modificaciones necesarias para resolver los conflictos de manera adecuada.
+3. **Fusiona el Pull Request:** Una vez que hayas revisado el Pull Request y resuelto cualquier conflicto de fusión, puedes proceder a fusionar el Pull Request en la rama principal (main). En plataformas como GitHub, puedes hacer esto haciendo clic en el botón "Merge pull request" y siguiendo las instrucciones para completar la fusión. Asegúrate de proporcionar un mensaje de commit claro y descriptivo para la fusión, indicando qué cambios se están fusionando y por qué.
+4. **Elimina la rama del Pull Request:** Después de fusionar el Pull Request, es recomendable eliminar la rama del Pull Request para mantener el repositorio limpio y organizado. Esto ayuda a evitar confusiones y reduce el desorden en el historial de ramas, facilitando la navegación y el mantenimiento del proyecto a largo plazo. Puedes eliminar la rama del Pull Request utilizando el siguiente comando:
+   ```
+   git branch -d nombre-de-la-rama
+   ```
+
+#### ¿Cómo colaboro al proyecto si no soy un colaborador invitado?
+Si no eres un colaborador invitado en un proyecto, puedes colaborar a través de Pull Requests siguiendo estos pasos:
+1. **Haz un fork del repositorio:** En la plataforma de alojamiento de código (como GitHub), haz un fork del repositorio al que deseas contribuir. Esto creará una copia del repositorio en tu cuenta de GitHub, lo que te permitirá realizar cambios sin afectar el repositorio original.
+2. **Clona tu fork del repositorio:** Clona tu fork del repositorio a tu máquina local para poder trabajar en los cambios que deseas proponer. Puedes usar el siguiente comando para clonar tu fork:
+   ```
+   git clone <URL de tu fork del repositorio>
+   ```
+3. **Crea una nueva rama para tu trabajo:** Antes de realizar cualquier cambio, crea una nueva rama para tu trabajo. Esto te permitirá mantener tus cambios organizados y separados de la rama principal (main) del repositorio original. Puedes usar el siguiente comando para crear una nueva rama:
+   ```
+   git checkout -b nombre-de-la-rama
+   ```
+4. **Realiza tus cambios y haz commits regularmente:** Realiza los cambios que deseas proponer en tu rama y haz commits regularmente para documentar tus cambios. Asegúrate de proporcionar mensajes de commit claros y descriptivos que expliquen qué cambios realizaste y por qué.
+5. **Sincroniza tu rama con la rama principal del repositorio original:** Antes de crear un Pull Request, es importante sincronizar tu rama con la rama principal (main) del repositorio original para asegurarte de que estás trabajando con la versión más reciente del código. Puedes hacer esto agregando el repositorio original como un remoto adicional y luego fusionando los cambios de la rama principal del repositorio original a tu rama de trabajo. Por ejemplo:
+   ```
+   git remote add upstream <URL del repositorio original>
+   git pull upstream main
+   ```
+6. **Crea un Pull Request:** Una vez que tus cambios estén listos y tu rama esté sincronizada con la rama principal del repositorio original, puedes crear un Pull Request desde tu fork del repositorio hacia el repositorio original. Esto permitirá a los mantenedores del proyecto revisar tus cambios y decidir si los fusionan en la rama principal del proyecto. Asegúrate de proporcionar una descripción clara y detallada en tu Pull Request para ayudar a los revisores a entender el propósito de tus cambios y facilitar la revisión del código.
+
+#### Buenas prácticas para el uso de Pull Requests
+1. **Usa Pull Requests para revisar y discutir cambios:** En lugar de fusionar cambios directamente a la rama principal, es recomendable usar Pull Requests para revisar y discutir los cambios antes de fusionarlos. Esto permite a otros desarrolladores revisar el código, proporcionar comentarios y asegurarse de que los cambios cumplen con los estándares de calidad antes de ser integrados en la rama principal del proyecto.
+2. **Proporciona una descripción clara en el Pull Request:** Al crear un Pull Request, es importante proporcionar una descripción clara y detallada de los cambios realizados. Esto ayuda a los revisores a entender el propósito de los cambios y facilita la revisión del código. Incluye información sobre qué cambios se realizaron, por qué se realizaron y cualquier contexto relevante que pueda ayudar a los revisores a comprender mejor el Pull Request.
+3. **Responde a los comentarios de los revisores:** Si recibes comentarios o sugerencias de los revisores en tu Pull Request, es importante responder a ellos de manera oportuna y constructiva. Agradece a los revisores por sus comentarios, considera sus sugerencias y realiza los cambios necesarios para mejorar tu Pull Request. La colaboración y la comunicación efectiva con los revisores son clave para garantizar que tu Pull Request sea aprobado y fusionado con éxito.
+4. **Mantén tu Pull Request actualizado:** Si hay cambios adicionales que necesitas realizar después de crear tu Pull Request, es importante mantenerlo actualizado con los cambios realizados en la rama principal (main) para evitar conflictos de fusión. Puedes hacer esto regularmente fusionando los cambios de la rama principal a tu rama de trabajo para mantenerla sincronizada con el resto del proyecto. Esto facilitará la revisión y fusión de tu Pull Request, ya que estará actualizado con los cambios más recientes del proyecto.
+5. **Elimina tu rama de trabajo después de fusionar:** Una vez que tu Pull Request haya sido aprobado y fusionado en la rama principal, es recomendable eliminar tu rama de trabajo para mantener el repositorio limpio y organizado. Esto ayuda a evitar confusiones y reduce el desorden en el historial de ramas, facilitando la navegación y el mantenimiento del proyecto a largo plazo. Puedes eliminar tu rama de trabajo utilizando el siguiente comando:
+   ```
+   git branch -d nombre-de-la-rama
+   ```   
